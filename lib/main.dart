@@ -9,15 +9,22 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Wigets"),
+          title: Text("Container Wigets"),
           centerTitle: true,
           backgroundColor: Colors.red[600]),
-      body: Center(
-          child: Text(
-        "hello I am center Wiget",
-        style: TextStyle(
-            fontFamily: 'Roboto', fontSize: 30.0, fontStyle: FontStyle.italic),
-      )),
+      body: Container(
+        color: Colors.grey,
+/*         if there is any widget the color applied becomes background color of the widget.
+           ie the container automatically resize according to the added child widget
+           otherwise color occupies the whole screen. */
+//        padding: EdgeInsets.all(20),
+//        padding: EdgeInsets.fromLTRB(20,30,40,50),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+//        margin: EdgeInsets.all(40),
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+//        margin: EdgeInsets.fromLTRB(30,50,60,70),
+        child: Text("Have a good day"),
+      ),
       floatingActionButton: FloatingActionButton(
           child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
