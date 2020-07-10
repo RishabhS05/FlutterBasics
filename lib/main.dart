@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(MaterialApp(home: HomeColumn()));
 }
 
 class Home extends StatelessWidget {
@@ -30,4 +30,76 @@ class Home extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+}
+
+class HomeRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text("Row Widget"),
+          centerTitle: true,
+          backgroundColor: Colors.green[600]),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Hello"),
+          FlatButton(
+            onPressed: () {},
+            child: Text("click here"),
+            color: Colors.blue,
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
+            child: Text("Container Wiget"),
+            color: Colors.red,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class HomeColumn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text("Column Widget"),
+          centerTitle: true,
+          backgroundColor: Colors.green[600]),
+      body: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Red",
+              style: TextCustomStyle(),
+            ),
+            color: Colors.blue,
+          ),
+          Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(20),
+              child: Text("Blue", style: TextCustomStyle()),
+              color: Colors.green),
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
+            child: Text("Yellow", style: TextCustomStyle()),
+            color: Colors.red,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class TextCustomStyle extends TextStyle {
+  @override
+  // TODO: implement color
+  Color get color => Colors.white;
 }
