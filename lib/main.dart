@@ -13,10 +13,9 @@ class Home extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.red[600]),
       body: Center(
-          child: Text(
-        "hello I am center Wiget",
-        style: TextStyle(
-            fontFamily: 'Roboto', fontSize: 30.0, fontStyle: FontStyle.italic),
+          child: Image(
+        image: NetworkImage(
+            'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'),
       )),
       floatingActionButton: FloatingActionButton(
           child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
