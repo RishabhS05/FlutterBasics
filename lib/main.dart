@@ -13,12 +13,22 @@ class Home extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.red[600]),
       body: Center(
-          child: Image(
-        image: NetworkImage(
-            'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'),
-      )),
+          child: Image.network(
+              'https://homepages.cae.wisc.edu/~ece533/images/airplane.png')
+//          child: Image(
+//        image: NetworkImage(
+//            'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'),
+//      )
+          ),
       floatingActionButton: FloatingActionButton(
-          child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
+          child: Center(
+            child: Image.asset('assets/profile.png'),
+//              child: Image(
+//            image: AssetImage('assets/profile.png'),
+//          )
+          ),
+          backgroundColor: Colors.red[600],
+          onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
