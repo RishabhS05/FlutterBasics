@@ -13,13 +13,13 @@ class Home extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.red[600]),
       body: Center(
-        child: Text("hello I am center Wiget"),
-      ),
+          child: Text(
+        "hello I am center Wiget",
+        style: TextStyle(
+            fontFamily: 'Roboto', fontSize: 30.0, fontStyle: FontStyle.italic),
+      )),
       floatingActionButton: FloatingActionButton(
-        child: Text("+"),
-        backgroundColor: Colors.red[600],
-        onPressed: () {}
-      ),
+          child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
