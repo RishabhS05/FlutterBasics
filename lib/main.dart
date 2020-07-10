@@ -41,6 +41,8 @@ class HomeRow extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.green[600]),
       body: Row(
+        // mainAxis -> horizontal
+        //crossAxis -> vertical
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -61,6 +63,7 @@ class HomeRow extends StatelessWidget {
     );
   }
 }
+
 class HomeColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -70,9 +73,32 @@ class HomeColumn extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.green[600]),
       body: Column(
+        // mainAxis ->vertical
+        //crossAxis -> horizontal
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+      Row(
+      // mainAxis -> horizontal
+      //crossAxis -> vertical
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Hello"),
+          FlatButton(
+            onPressed: () {},
+            child: Text("click here"),
+            color: Colors.blue,
+          ),
           Container(
             margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
+            child: Text("Container Wiget"),
+            color: Colors.red,
+          )
+        ],
+      ),
+          Container(
             padding: EdgeInsets.all(20),
             child: Text(
               "Red",
@@ -81,13 +107,11 @@ class HomeColumn extends StatelessWidget {
             color: Colors.blue,
           ),
           Container(
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(30),
               child: Text("Blue", style: TextCustomStyle()),
               color: Colors.green),
           Container(
-            margin: EdgeInsets.all(10),
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(40),
             child: Text("Yellow", style: TextCustomStyle()),
             color: Colors.red,
           )
@@ -99,6 +123,11 @@ class HomeColumn extends StatelessWidget {
 
 class TextCustomStyle extends TextStyle {
   @override
-  // TODO: implement color
   Color get color => Colors.white;
+
+  @override
+  String get fontFamily => 'Roboto';
+
+  @override
+  double get fontSize => 20;
 }
