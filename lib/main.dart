@@ -61,7 +61,6 @@ class HomeRow extends StatelessWidget {
     );
   }
 }
-
 class HomeColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
