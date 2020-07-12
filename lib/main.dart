@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wigets_app_demo/PersonCard.dart';
 
 import 'Person.dart';
 
@@ -59,12 +60,11 @@ class _CustomListState extends State<CustomList> {
           centerTitle: true,
           backgroundColor: Colors.grey[600]),
       body: Column(
-        children: personList.map((person) {
-          return Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text('${person.name} - ${person.age}',style: TextStyle(fontSize: 20),),
-          );
-        }).toList(),
+        children: personList.map((person) => PersonCard(person: person,delete: (){
+          setState(() {
+            personList.remove(person);
+          });
+        }),).toList(),
       ),
       floatingActionButton: FloatingActionButton(
           child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
