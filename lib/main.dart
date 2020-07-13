@@ -4,7 +4,23 @@ void main() {
   runApp(MaterialApp(home: Home()));
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  TextEditingController controller;
+  TextEditingController controller2;
+  String text1 = '';
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+    controller2 = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,15 +28,53 @@ class Home extends StatelessWidget {
           title: Text("Wigets"),
           centerTitle: true,
           backgroundColor: Colors.red[600]),
-      body: Center(
-          child: Text(
-        "hello I am center Wiget",
-        style: TextStyle(
-            fontFamily: 'Roboto', fontSize: 30.0, fontStyle: FontStyle.italic),
-      )),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: InputBorder.none, hintText: 'Enter something'),
+              controller: controller2,
+              onSubmitted: (String str) {
+                setState(() {
+                  text1 = controller2.text;
+                });
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: InputBorder.none, hintText: 'Enter something'),
+              controller: controller,
+              onSubmitted: (String str) {
+                setState(() {
+                  text1 += controller2.text + " " + controller.text;
+                });
+              },
+            ),
+          ),
+          Text(text1)
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
           child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  void snackBar(BuildContext contextstr, String text) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(text),
+    ));
+  }
+
+  void dispose() {
+    controller.dispose();
+    controller2.dispose();
+    super.dispose();
   }
 }
