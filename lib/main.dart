@@ -13,6 +13,7 @@ class _HomeState extends State<Home> {
   TextEditingController controller;
   TextEditingController controller2;
   String text1 = '';
+  bool ischecked = false;
 
   @override
   void initState() {
@@ -57,19 +58,25 @@ class _HomeState extends State<Home> {
               },
             ),
           ),
-          Text(text1)
+          Text(text1),
+          Checkbox(
+            tristate: true,
+            checkColor: Colors.white,
+            activeColor: Colors.blue,
+            focusColor: Colors.red,
+            value: ischecked,
+            onChanged: (bool checked) {
+              setState(() {
+                this.ischecked = checked;
+              });
+            },
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
           child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
-  }
-
-  void snackBar(BuildContext contextstr, String text) {
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(text),
-    ));
   }
 
   void dispose() {
