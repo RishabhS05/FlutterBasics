@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wigets_app_demo/models/api_response.dart';
-import 'package:wigets_app_demo/models/post.dart';
 
+import 'models/postList.dart';
+import 'models/success_data.dart';
 import 'services/services.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var services = Services();
-  APIResponse<List<Post>> _apiResponse;
+  PostList _apiResponse;
   bool _isLoading = false;
 
   @override
@@ -28,38 +28,41 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text("Api Call"),
-            centerTitle: true,
-            backgroundColor: Colors.red[600]),
-        body: Builder(builder:(_) {
-      return _isLoading ? Center(child: CircularProgressIndicator()) : ListView.builder(
-          itemCount: _apiResponse.data.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              trailing: Icon(Icons.delete),
-              title: Text(_apiResponse.data[index].title +
-                  "\n" +
-                  _apiResponse.data[index].body),
-              onTap: () {
-                Scaffold.of(context).showSnackBar(
-                    SnackBar(content: Text(_apiResponse.data[index].title)));
-              },
-            );
-          });
-  }
-  ),
+      appBar: AppBar(
+          title: Text("Api Call"),
+          centerTitle: true,
+          backgroundColor: Colors.red[600]),
+      body: Builder(builder: (_) {
+        return _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemCount: _apiResponse.postList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    trailing: Icon(Icons.delete),
+                    title: Text(_apiResponse.postList[index].title +
+                        "\n" +
+                        _apiResponse.postList[index].body),
+                    onTap: () {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text(_apiResponse.postList[index].title)));
+                    },
+                  );
+                });
+      }),
       floatingActionButton: FloatingActionButton(
-          child: Text("+"),
-          backgroundColor: Colors.red[600], onPressed: () {}),
-      floatingActionButtonLocation : FloatingActionButtonLocation.centerFloat,);}
+          child: Text("+"), backgroundColor: Colors.red[600], onPressed: () {}),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
 
-_fetchPosts() async {
-  setState(() {
-    _isLoading = true;
-  });
-  _apiResponse = await services.getPostList('posts');
-  setState(() {
-    _isLoading = false;
-  });
-}}
+  _fetchPosts() async {
+    setState(() {
+      _isLoading = true;
+    });
+    _apiResponse = await SuccessData().getPostListData();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+}
