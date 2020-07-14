@@ -14,7 +14,7 @@ class Services {
 
   Future<APIResponse<List<Post>>> getPostList(String path) async {
     return http.get(baseUrl + path, headers: headers).then((data) {
-      if (data.statusCode >=200 && data.statusCode <=299) {
+      if (data.statusCode >=200 && data.statusCode<=299) {
         final jsonData = json.decode(data.body);
         final posts = <Post>[];
         for (var item in jsonData) {
@@ -24,7 +24,6 @@ class Services {
       }
       return APIResponse<List<Post>>(
           error: true, errorMessage: 'An error occured');
-    }).catchError((_) =>
-        APIResponse<List<Post>>(error: true, errorMessage: 'An error occured'));
+    }).catchError((_) => APIResponse<List<Post>>(error: true, errorMessage: 'An error occured'));
   }
 }
