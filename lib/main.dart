@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wigets_app_demo/image_picker.dart';
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(MaterialApp(home: ImagePickers()));
 }
 
 class Home extends StatelessWidget {
