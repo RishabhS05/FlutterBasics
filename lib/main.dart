@@ -22,9 +22,25 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
   List<BluetoothDevice> devices = List<BluetoothDevice>();
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state.index == 0) {
+      if (_bluetoothState.isEnabled) {
+        _listBondedDevice();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +97,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _getState();
     _setStateListener();
     _listBondedDevice();
@@ -108,7 +125,12 @@ class _HomePageState extends State<HomePage> {
         .listen((BluetoothState state) {
       _bluetoothState = state;
       print("state is enabled ${state.isEnabled}");
-      setState(() {});
+      if (_bluetoothState.isEnabled) {
+        _listBondedDevice();
+      } else {
+        devices.clear();
+        setState(() {});
+      }
     });
   }
 }
