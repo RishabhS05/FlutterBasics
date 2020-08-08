@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   AutoCompleteTextField searchTextField;
-  List<String> listdummy = ["Rishabh", "Anuj", "Abhijeet", "Priyanka"];
+  List<String> listdummy = ["Rishabh", "Anuj", "Abhijeet", "Priyanka", "Amita"];
   TextEditingController controller = new TextEditingController();
   GlobalKey<AutoCompleteTextFieldState<String>> key = new GlobalKey();
 
@@ -31,6 +31,13 @@ class _HomeState extends State<Home> {
       body: Center(
         child: Column(children: <Widget>[
           searchTextField = AutoCompleteTextField<String>(
+            clearOnSubmit: true,
+            textChanged: (text) => controller.text = text,
+            textSubmitted: (text) => setState(() {
+              if (text != "") {
+             controller.text = text;
+              }
+            }),
             suggestions: listdummy,
             key: key,
             style: new TextStyle(color: Colors.black, fontSize: 16.0),
