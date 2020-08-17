@@ -69,21 +69,28 @@ class MyHomePage extends HookWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Mjpeg( fit: BoxFit.fill,
+          Mjpeg(
+            fit: BoxFit.fill,
             isLive: isRunning.value,
             stream: ip,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
           ),
-          Row(
-            children: <Widget>[
-              RaisedButton(
-                onPressed: () {
-                  isRunning.value = !isRunning.value;
-                },
-                child: Text('Toggle'),
-              ),
-            ],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      isRunning.value = !isRunning.value;
+                    },
+                    child: Text('Toggle'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
