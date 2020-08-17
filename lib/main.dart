@@ -24,6 +24,9 @@ class IPScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Wifi IP Address"),
+      ),
       body: Container(
         child: Column(
           children: <Widget>[
@@ -64,14 +67,13 @@ class MyHomePage extends HookWidget {
   Widget build(BuildContext context) {
     final isRunning = useState(true);
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          Expanded(
-            child: Center(
-              child: Mjpeg(isLive: isRunning.value, stream: ip
-                  //'http://192.168.1.37:8081',
-                  ),
-            ),
+          Mjpeg( fit: BoxFit.fill,
+            isLive: isRunning.value,
+            stream: ip,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
           ),
           Row(
             children: <Widget>[
@@ -80,15 +82,6 @@ class MyHomePage extends HookWidget {
                   isRunning.value = !isRunning.value;
                 },
                 child: Text('Toggle'),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Scaffold(
-                            appBar: AppBar(),
-                          )));
-                },
-                child: Text('Push new route'),
               ),
             ],
           ),
