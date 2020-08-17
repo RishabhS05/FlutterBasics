@@ -12,28 +12,65 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: IPScreen(),
+    );
+  }
+}
+
+class IPScreen extends StatelessWidget {
+  String ip = "";
+  TextEditingController ipTextControlller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Text("Enter IP Address"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: ipTextControlller,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RaisedButton(
+                child: Text("submit"),
+                onPressed: () {
+                  if (ipTextControlller.text.contains("http") ||
+                      ipTextControlller.text.contains("https")) {
+                    ip = ipTextControlller.text;
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => MyHomePage(ip: ip)));
+                  }
+                },
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
 
 class MyHomePage extends HookWidget {
+  String ip;
+
+  MyHomePage({this.ip});
+
   @override
   Widget build(BuildContext context) {
     final isRunning = useState(true);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Demo Home Page'),
-      ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: Center(
-              child: Mjpeg(
-                isLive: isRunning.value,
-                stream:'http://25.134.76.210:8080/video'
- //'http://192.168.1.37:8081',
-              ),
+              child: Mjpeg(isLive: isRunning.value, stream: ip
+                  //'http://192.168.1.37:8081',
+                  ),
             ),
           ),
           Row(
@@ -47,8 +84,7 @@ class MyHomePage extends HookWidget {
               RaisedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          Scaffold(
+                      builder: (context) => Scaffold(
                             appBar: AppBar(),
                           )));
                 },
