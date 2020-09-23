@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'customWidgets/person.dart';
+
 class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class SecondScreen extends StatelessWidget {
         child: Text("<-"),
         backgroundColor: Colors.red[600],
         onPressed: () {
-          Navigator.pop(context, "Hi");
+          Navigator.pop(context, Person(name: "rishabh",age:25 ));
         },
       ),
     );

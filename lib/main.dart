@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:wigets_app_demo/screen_second.dart';
 
-void main() {
-  runApp(MaterialApp(home: Home()));
-}
+import 'customWidgets/person.dart';
+import 'customWidgets/routes.dart';
 
+//void main() {
+//  runApp(MaterialApp(home: Home()));
+//}
+
+void main() => runApp(MyApp());
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  String value = "";
+  Person value =Person();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.red[600]),
       body: Center(
           child: Text(
-        "hello I am center Wiget ${value}",
+        " HI ${value.name }",
         style: TextStyle(
             fontFamily: 'Roboto', fontSize: 30.0, fontStyle: FontStyle.italic),
       )),
@@ -32,7 +36,7 @@ class _HomeState extends State<Home> {
           onPressed: () async {
             value = await Navigator.push(
                 context,
-                MaterialPageRoute<String>(
+                MaterialPageRoute<Person>(
                     builder: (context) => SecondScreen()));
             setState(() {});
           }),
