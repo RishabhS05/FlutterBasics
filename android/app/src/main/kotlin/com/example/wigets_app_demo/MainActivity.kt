@@ -23,6 +23,7 @@ class MainActivity : FlutterActivity() {
     }
 
     fun loadWebView() {
+
         val layout = FrameLayout(this)
         val layoutparams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL)
         layout.layoutParams = layoutparams

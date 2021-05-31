@@ -23,6 +23,6 @@ class Home extends StatelessWidget {
   }
 
   Future openWebView() async {
-    final int result = await platform.invokeMethod('openWebView');
+    await platform.invokeMethod('openWebView');
   }
 }
